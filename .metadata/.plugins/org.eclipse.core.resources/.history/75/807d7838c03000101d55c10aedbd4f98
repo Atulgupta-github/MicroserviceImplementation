@@ -1,0 +1,5 @@
+package com.vin.rating.payload;
+
+public class ApiResponse {
+
+}

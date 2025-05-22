@@ -1,0 +1,37 @@
+package com.vin.rating.serviceImp;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.vin.rating.entity.Rating;
+import com.vin.rating.service.RatingRemote;
+
+@Service
+public class RatingService implements RatingRemote {
+
+	@Override
+	public Rating createRating(Rating rating) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Rating> getAllRating() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rating getRatingByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rating getRatingByHotelId(String hotelId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

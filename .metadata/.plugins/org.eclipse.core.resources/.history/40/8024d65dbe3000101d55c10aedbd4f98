@@ -1,0 +1,11 @@
+package com.vin.rating.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+
+@Table
+public class Rating {
+
+	@Column(name="ratingId")
+	private String id;
+}

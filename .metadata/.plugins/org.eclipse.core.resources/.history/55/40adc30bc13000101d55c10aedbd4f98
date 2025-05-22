@@ -1,0 +1,14 @@
+package com.vin.rating.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.vin.rating.payload.ApiResponse;
+
+@RestControllerAdvice
+public class globalExceptionHandler {
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<ApiResponse> heandlerResourceNotFoundException (ResourceNotFoundException exception)
+
+}

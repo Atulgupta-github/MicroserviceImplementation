@@ -1,0 +1,10 @@
+package com.vin.rating.serviceImp;
+
+import org.springframework.stereotype.Service;
+
+import com.vin.rating.service.RatingRemote;
+
+@Service
+public class RatingService implements RatingRemote {
+
+}

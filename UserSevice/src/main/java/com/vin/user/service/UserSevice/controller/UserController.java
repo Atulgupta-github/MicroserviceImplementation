@@ -1,0 +1,55 @@
+package com.vin.user.service.UserSevice.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.vin.user.service.UserSevice.Remote.UserRemote;
+import com.vin.user.service.UserSevice.entites.User;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+	
+	@Autowired
+	private UserRemote userRemote;
+	
+	@PostMapping
+	public ResponseEntity<User> createUser(@RequestBody User user){
+		User savedUser = this.userRemote.saveUser(user);
+		return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+		
+		
+	}
+	@GetMapping("/{userId}")
+	public ResponseEntity<User> getUser(@PathVariable String userId){
+		User user = this.userRemote.getUser(userId);
+		return ResponseEntity.ok(user);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<User>> getAllUsers(){
+		List<User> users = this.userRemote.getAllUser();
+		return ResponseEntity.ok(users);
+	}
+	
+	@PutMapping("{userId}")
+	public ResponseEntity<User> updateUser(@PathVariable String userId){
+		User updatedUser = this.userRemote.updateUser(userId);
+		return ResponseEntity.ok(updatedUser);
+		
+	}
+	
+	
+
+}

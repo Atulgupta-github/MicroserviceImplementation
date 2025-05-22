@@ -1,0 +1,22 @@
+package com.vin.rating.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.vin.rating.entity.Rating;
+
+@RestController
+@RequestMapping("/rating")
+public class RatingController {
+	
+	
+	//create Rating
+	@PostMapping("/") 
+	public ResponseEntity<Rating> createRating(@RequestBody Rating rating ){
+		
+	}
+
+}
