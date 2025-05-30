@@ -1,5 +1,0 @@
-package com.vin.rating.repository;
-
-public interface RatingRepository {
-
-}

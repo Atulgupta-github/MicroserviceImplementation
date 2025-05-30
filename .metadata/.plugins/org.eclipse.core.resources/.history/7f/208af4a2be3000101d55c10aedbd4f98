@@ -1,8 +1,0 @@
-package com.vin.rating.serviceImp;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class RatingService {
-
-}

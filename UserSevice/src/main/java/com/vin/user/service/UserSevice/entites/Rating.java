@@ -26,5 +26,7 @@ public class Rating {
 	private int rating;
 	
 	private String feedBack;
+	
+	private Hotel hotel;
 
 }

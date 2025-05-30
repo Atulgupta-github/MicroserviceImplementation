@@ -1,8 +1,0 @@
-package com.vin.rating.controller;
-
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController("/rating")
-public class RatingController {
-
-}

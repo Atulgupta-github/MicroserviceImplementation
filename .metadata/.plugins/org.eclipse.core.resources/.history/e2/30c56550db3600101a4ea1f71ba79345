@@ -1,0 +1,6 @@
+package com.vin.user.config;
+
+@org.springframework.context.annotation.Configuration
+public class Configuration {
+
+}

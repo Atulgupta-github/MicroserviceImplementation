@@ -1,5 +1,0 @@
-package com.vin.rating.service;
-
-public interface RatingRemote {
-
-}

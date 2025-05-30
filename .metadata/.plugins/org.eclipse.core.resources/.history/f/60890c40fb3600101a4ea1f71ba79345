@@ -1,0 +1,5 @@
+package com.vin.user.service.UserSevice.config;
+
+public class MyConfig {
+
+}
