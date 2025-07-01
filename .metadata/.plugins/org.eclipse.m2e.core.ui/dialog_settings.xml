@@ -26,6 +26,9 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\atul.gupta\Downloads\demo"/>
+			<item value="E:\My work\Projects\MicroServices\ConfigServer"/>
+			<item value="E:\My work\Projects\MicroServices\ApiGateway"/>
 			<item value="E:\My work\Projects\MicroServices\ServiceRegistry"/>
 			<item value="E:\My work\Projects\MicroServices\RatingService"/>
 			<item value="E:\My work\Projects\MicroServices\HotelService"/>

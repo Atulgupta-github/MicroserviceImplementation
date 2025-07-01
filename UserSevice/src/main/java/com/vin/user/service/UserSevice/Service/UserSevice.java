@@ -18,6 +18,7 @@ import com.vin.user.service.UserSevice.Remote.UserRemote;
 import com.vin.user.service.UserSevice.entites.Hotel;
 import com.vin.user.service.UserSevice.entites.Rating;
 import com.vin.user.service.UserSevice.entites.User;
+import com.vin.user.service.UserSevice.external.service.HotelService;
 import com.vin.user.service.UserSevice.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,9 @@ public class UserSevice implements UserRemote{
 	
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private HotelService hotelService;
 	
 	private org.slf4j.Logger logger =  LoggerFactory.getLogger(UserSevice.class);
 	
@@ -48,13 +52,13 @@ public class UserSevice implements UserRemote{
 		return listUser;
 	}
 
-	@Override
+	/*@Override
 	public User getUser(String userId) {
 		// TODO Auto-generated method stub
 		User user =userRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException("user with given id , user not found"+userId));
 		
 		
-		//fatch Rating
+		//fatch Rating using rest template
 		//http://localhost:8083/ratings/users/437a1ac4-e933-4434-8448-676157009143
 		
 		Rating[] ratingForUser= restTemplate.getForObject("http://RATINGSERVICE/ratings/users/"+user.getUserId(), Rating[].class);
@@ -65,22 +69,7 @@ public class UserSevice implements UserRemote{
 		
 		user.setRatings(ratingList);
 		
-		/*
-		 * for(Rating r: forObject) { r.getHotelId(); ArrayList<Hotel> hotelList=
-		 * restTemplate.getForObject("http://localhost:8082/hotel/"+r.getHotelId(),
-		 * ArrayList.class); user.setHotel(hotelList); }
-		 */
-		
-		/*
-		 * List<Rating> ratingList = ratingForUser.stream().map(rating->{
-		 * 
-		 * ResponseEntity<Hotel> ent=
-		 * restTemplate.getForEntity("http://localhost:8082/hotel/"+rating.getHotelId(),
-		 * Hotel.class); Hotel hotel =ent.getBody(); rating.setHotel(hotel);
-		 * //http://localhost:8082/hotel/667e94d9-1db8-4192-afd2-1f1e5e23ee40 return
-		 * rating; }).collect(Collectors.toList());
-		 */
-		
+	
 		
 		
 		ratingList.stream().map(rating->{
@@ -96,7 +85,43 @@ public class UserSevice implements UserRemote{
 		
 		logger.info("{}",ratingForUser.toString());
 		return user;
+	}*/
+	
+	//Using feign client
+	public User getUser(String userId) {
+		User user =userRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException("user with given id , user not found"+userId));
+		//using rest template
+		Rating[] ratingForUser= restTemplate.getForObject("http://RATINGSERVICE/ratings/users/"+user.getUserId(), Rating[].class);
+		List<Rating> ratingList=Arrays.stream(ratingForUser).toList();
+		user.setRatings(ratingList);
+		
+		//using feign client
+		ratingList.stream().map(rating->{
+			Hotel hotel = hotelService.getHotel(rating.getHotelId());
+			rating.setHotel(hotel);
+			return rating;
+		}).collect(Collectors.toList());
+		
+		
+		
+		return user;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	private Object ResourceNotFoundException(String string) {
 		// TODO Auto-generated method stub
